@@ -2,7 +2,10 @@
 
 -- Настраиваем подключение к tarantool
 box.cfg {
-    listen = 3301
+    listen = 3301,
+    -- background = true, -- for production
+    log = '../logs/LogFileDB.log',
+    pid_file = '../logs/PidFileDB.pid'
 }
 box.once("bootstrap", function()
     box.schema.space.create('tester')
@@ -14,8 +17,7 @@ box.once("bootstrap", function()
         { type = 'hash', parts = {'key'}})
 end)
 
--- For debug:
--- require('console').start()
+-- require('console').start() -- for debug
 
 -- Настраиваем http-сервер
 json = require('json')

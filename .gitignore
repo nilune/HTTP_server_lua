@@ -1,4 +1,5 @@
 # Tarantool files
+logs
 .rocks
 *.snap
 *.xlog
