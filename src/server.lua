@@ -47,7 +47,7 @@ end
 local function handler_put(self)
     local body = self:json()
     local key, value = self:stash('id'), json.encode(body['value'])
-    box.space.tester:insert{key, value}
+    box.space.tester:update({ key }, {{ '=', 2, value }})
     return self:render{ text = 'Received '..key..' with '..value }
 end
 
